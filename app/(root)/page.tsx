@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button"
 
 function Home() {
   return (
-    <div>
+    <div className="flex min-h-screen home-wrapper">
       <Button>Click me</Button>
     </div>
   )
