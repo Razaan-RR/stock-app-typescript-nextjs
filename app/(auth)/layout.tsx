@@ -1,5 +1,5 @@
-import Link from "next/link"
-import Image from "next/image"
+import Link from 'next/link'
+import Image from 'next/image'
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -15,24 +15,20 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           />
         </Link>
 
-        <div className="pb-6 lg:pb-8 flex-1">
-          {children}
-        </div>
+        <div className="pb-6 lg:pb-8 flex-1">{children}</div>
       </section>
 
       <section className="auth-right-section">
         <div className="z-10 relative lg:mt-4 lg:mb-16">
           <blockquote className="auth-blockquote">
-            Zarion turned my watchlist into a winning list. The alerts are
-            spot-on, and I feel more confident making moves in the market
+            Zarion helps me catch the right moves at the right time. It’s like
+            having a second set of eyes on the market.
           </blockquote>
 
           <div className="flex items-center justify-between">
             <div>
               <cite className="auth-testimonial-author">— Sumaiya R.</cite>
-              <p className="max-md:text-xs text-gray-500">
-                Retail Investor
-              </p>
+              <p className="max-md:text-xs text-gray-500">Retail Investor</p>
             </div>
 
             <div className="flex items-center gap-0.5">
