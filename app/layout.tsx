@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Stock Track App",
-  description: "Created by Razaan Reza",
+  title: "Zarion",
+  description: "A stock tracker app created by Razaan Reza",
 };
 
 export default function RootLayout({
