@@ -1,5 +1,6 @@
 import { inngest } from '@/lib/inngest/client'
 import { PERSONALIZED_WELCOME_EMAIL_PROMPT } from '@/lib/inngest/prompts'
+import { sendWelcomeEmail } from '../nodemailer'
 
 export const sendSignUpEmail = inngest.createFunction(
   { id: 'sign-up-email' },
@@ -35,9 +36,9 @@ export const sendSignUpEmail = inngest.createFunction(
         (part && 'text' in part ? part.text : null) ||
         'Thanks for joining Zarion. You now have the tools to track markets and make smarter moves.'
 
-      // const { data: { email, name } } = event;
+      const { data: { email, name } } = event;
 
-      // return await sendWelcomeEmail({ email, name, intro: introText });
+      return await sendWelcomeEmail({ email, name, intro: introText });
     })
 
     return {
