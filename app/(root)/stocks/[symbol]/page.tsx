@@ -1,9 +1,13 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useParams, notFound } from 'next/navigation'
 import TradingViewWidget from '@/components/TradingViewWidget'
 import WatchlistButton from '@/components/WatchlistButton'
+import { WatchlistItem } from '@/database/models/watchlist.model'
+import { getStocksDetails } from '@/lib/actions/finnhub.actions'
+import { getUserWatchlist } from '@/lib/actions/watchlist.actions'
 import {
   SYMBOL_INFO_WIDGET_CONFIG,
   CANDLE_CHART_WIDGET_CONFIG,
@@ -32,8 +36,33 @@ export default function StockDetails() {
   const { symbol } = useParams<{ symbol: string }>()
   const stockSymbol = symbol.toUpperCase()
 
+  const [stockData, setStockData] = useState<any>(null)
+  const [isInWatchlist, setIsInWatchlist] = useState(false)
+  const [loading, setLoading] = useState(true)
+
   const scriptUrl =
     'https://s3.tradingview.com/external-embedding/embed-widget-'
+
+  useEffect(() => {
+    const loadData = async () => {
+      const data = await getStocksDetails(stockSymbol)
+      const watchlist = await getUserWatchlist()
+
+      if (!data) return notFound()
+
+      const exists = watchlist.some(
+        (item: WatchlistItem) => item.symbol === stockSymbol
+      )
+
+      setStockData(data)
+      setIsInWatchlist(exists)
+      setLoading(false)
+    }
+
+    loadData()
+  }, [stockSymbol])
+
+  if (loading) return null
 
   return (
     <motion.main
@@ -89,8 +118,9 @@ export default function StockDetails() {
             >
               <WatchlistButton
                 symbol={stockSymbol}
-                company={stockSymbol}
-                isInWatchlist={false}
+                company={stockData.company}
+                isInWatchlist={isInWatchlist}
+                type="button"
               />
             </motion.div>
 
