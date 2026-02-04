@@ -1,4 +1,4 @@
-# 📈 Zarion — Market Intelligence Dashboard
+# 📈 Zarion — A Stock Tracker App
 
 **Zarion** is a modern stock tracker application designed to simplify market monitoring with a clean, real-time dashboard. It enables users to track favorite stocks, analyze price movements, and stay on top of gains and losses—without unnecessary clutter.
 
