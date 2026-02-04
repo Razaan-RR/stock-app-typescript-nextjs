@@ -61,3 +61,23 @@ export const addToWatchlist = async (symbol: string, company: string) => {
     throw new Error('Failed to add stock to watchlist');
   }
 };
+
+export const removeFromWatchlist = async (symbol: string) => {
+  try {
+    const session = await auth.api.getSession({
+      headers: await headers(),
+    });
+    if (!session?.user) redirect('/sign-in');
+
+    await Watchlist.deleteOne({
+      userId: session.user.id,
+      symbol: symbol.toUpperCase(),
+    });
+    revalidatePath('/watchlist');
+
+    return { success: true, message: 'Stock removed from watchlist' };
+  } catch (error) {
+    console.error('Error removing from watchlist:', error);
+    throw new Error('Failed to remove stock from watchlist');
+  }
+};
