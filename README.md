@@ -11,7 +11,7 @@ Built for speed, clarity, and scalability, Zarion delivers a smooth experience i
 * 📊 **Market Overview Dashboard**
   High-level snapshot of global market performance.
 
-  * 🔐 **Authentication & User Accounts**  
+* 🔐 **Authentication & User Accounts**  
   Secure sign-up and login system with protected routes and personalized user sessions.
 
 * 🔥 **Stock Heatmap**
