@@ -1,8 +1,9 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -11,11 +12,10 @@ import {
 import { useRouter } from 'next/navigation'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { LogOut } from 'lucide-react'
-import NavItems from './NavItems'
 import { signOut } from '@/lib/actions/auth.actions'
+import NavItems from './NavItems'
 
-function UserDropdown({user}:{user: User}) {
-  const router = useRouter()
+const UserDropdown = ({ user, initialStocks }: {user: User, initialStocks: StockWithWatchlistStatus[]}) => {  const router = useRouter()
 
   const handleSignOut = async () => {
     await signOut()
@@ -69,7 +69,7 @@ function UserDropdown({user}:{user: User}) {
         </DropdownMenuItem>
         <DropdownMenuSeparator className="hidden sm:block bg-gray-600" />
         <nav className="sm:hidden">
-          <NavItems />
+          <NavItems initialStocks={initialStocks} />
         </nav>
       </DropdownMenuContent>
     </DropdownMenu>
